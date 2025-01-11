@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { showPipeline } from "../api/api"; // Import the showPipeline function
 
-const PipelineDisplay = ({ projectId }) => {
+const ShowPipeline = ({ projectId }) => {
   const [pipeline, setPipeline] = useState(null); // State to store the pipeline
   const [error, setError] = useState(""); // To store any error message
 
@@ -37,4 +37,4 @@ const PipelineDisplay = ({ projectId }) => {
   );
 };
 
-export default PipelineDisplay;
+export default ShowPipeline;

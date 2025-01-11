@@ -26,6 +26,7 @@ export const addPipelineComponent = async (req,res) => {
   try {
     const { project_id, position } = req.params;
     const component = req.body;
+    console.log(project_id, position, component);
     await AddPipelineComponent(project_id, component, position);
     return res.status(201).json({ message: "Pipeline updated successfully"});
   } catch (error) {

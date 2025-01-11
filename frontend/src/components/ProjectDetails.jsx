@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchProjectDetails } from "../api/api"; // Function to fetch project details
-import Pipeline from "./Pipleline";
 import SelectData from "./SelectData";
+import PipelineManager from "./PipelineManager";
 // import ExecutePipeline from "./ExecutePipeline";
 
 const ProjectDetails = () => {
@@ -44,7 +44,8 @@ const ProjectDetails = () => {
           {/* Conditionally render SelectData based on state */}
           {showSelectData && <SelectData project_id={project.id} />}
         {/* <ExecutePipeline project_id={project.id}/> */}
-        <p>Pipeline: <Pipeline pipeline={project.pipeline}/></p>
+        <PipelineManager projectId={toString(project.id)}/>
+        {/* <p>Pipeline: <Pipeline pipeline={project.pipeline}/></p> */}
       </div>
     ) : (
       <p>Loading project details...</p> // Show a loading message while the project is being fetched

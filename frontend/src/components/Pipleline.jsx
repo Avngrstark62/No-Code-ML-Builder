@@ -1,10 +1,8 @@
-import PipelineDisplay from "./showPipeline";
+import ShowPipeline from "./ShowPipeline.jsx";
 
-const Pipeline = (pipeline) => {
-    // console.log(pipeline);
+const Pipeline = (projectId) => {
     return <>
-    Piple
-    {/* {JSON.stringify(pipeline.pipeline)} */}
+    <ShowPipeline projectId={projectId} />
     </>
 };
 

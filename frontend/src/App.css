@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.pipeline-component {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
