@@ -1,4 +1,4 @@
-import {CreateNewProject, GetUserProjects, GetProjectDetails, PipelineSelectData} from "../models/project.model.js";
+import {CreateNewProject, GetUserProjects, GetProjectDetails} from "../models/project.model.js";
 
 export const createProject = async (req, res) => {
   try {
@@ -42,17 +42,6 @@ export const fetchProjectDetails = async (req, res) => {
     } else {
       res.status(404).json({ message: "Project not found" });
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
-export const selectDataForProject = async (req,res) => {
-  try {
-    const { project_id,fileName } = req.params;
-    await PipelineSelectData(project_id,fileName);
-    return res.status(201).json({ message: "Project data selected successfully"});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

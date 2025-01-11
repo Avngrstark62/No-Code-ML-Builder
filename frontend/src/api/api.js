@@ -33,6 +33,14 @@ export const fetchProjectDetails = (project_id) => API.get(`/api/project/project
 
 export const selectCsvData = (project_id,fileName) => API.post(`/api/project/components/select_data/${project_id}/${fileName}`);
 
+
+export const showPipeline = (project_id) => API.post(`/api/project/show_pipeline/${project_id}`);
 export const executePipeline = (project_id,starting_id) => API.post(`/api/project/execute_pipeline/${project_id}/${starting_id}`);
+export const addPipelineComponent = (project_id,position,formData) => API.post(`/api/project/add_pipeline_component/${project_id}/${position}`, formData);
+export const updatePipelineComponent = (project_id,position,formData) => API.post(`/api/project/update_pipeline_component/${project_id}/${position}`, formData);
+export const deletePipelineComponent = (project_id,position) => API.post(`/api/project/delete_pipeline_component/${project_id}/${position}`);
+export const movePipelineComponent = (project_id,movable_position,new_position) => API.post(`/api/project/move_pipeline_component/${project_id}/${movable_position}/${new_position}`);
+
+// pipeline operations
 
 export default API;

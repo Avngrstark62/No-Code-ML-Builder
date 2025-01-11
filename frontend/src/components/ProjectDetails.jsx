@@ -43,7 +43,6 @@ const ProjectDetails = () => {
 
           {/* Conditionally render SelectData based on state */}
           {showSelectData && <SelectData project_id={project.id} />}
-        
         {/* <ExecutePipeline project_id={project.id}/> */}
         <p>Pipeline: <Pipeline pipeline={project.pipeline}/></p>
       </div>
