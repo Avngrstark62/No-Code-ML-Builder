@@ -82,7 +82,6 @@ export const assignFileToUser = async (userId, tableId) => {
 
   try {
     const result = await client.query(query, values);
-    console.log('File assigned to user:', result);
   } catch (error) {
     console.error('Error in assignFileToUser:', error);
     throw new Error('Error assigning file to user');

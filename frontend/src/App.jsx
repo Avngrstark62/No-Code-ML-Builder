@@ -1,67 +1,39 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
+import AuthenticationPage from "./pages/AuthenticationPage";
+import RawDatasetsPage from "./pages/RawDatasetsPage";
 import HomePage from "./pages/HomePage";
-import AddNewData from "./pages/AddNewData";
-import ViewData from "./pages/ViewData";
-import DeleteTable from "./components/DeleteTable";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
-import ProfilePage from "./pages/ProfilePage";
-import PrivateRoute from "./components/PrivateRoute";
-import Project from "./pages/ProjectPage";
+import AccountPage from "./pages/AccountPage";
+import SettingsPage from "./pages/SettingsPage";
+import DataPipelinesPage from "./pages/DataPipelinesPage";
+import ModelsPage from "./pages/ModelsPage";
+import DataPipelineWorkspace from "./workspaces/DataPipelineWorkspace";
+import RawDatasetWorkspace from "./workspaces/RawDatasetWorkspace";
 
-function App() {
+export default function App() {
+  const isLoggedIn = !!localStorage.getItem("token");
+
   return (
     <Router>
-      <Layout>
+      {isLoggedIn ? (
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/upload"
-            element={
-              <PrivateRoute>
-                <AddNewData />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/display"
-            element={
-              <PrivateRoute>
-                <ViewData />
-              </PrivateRoute>
-            }
-            />
-          <Route
-            path="/delete_table"
-            element={
-              <PrivateRoute>
-                <DeleteTable />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute>
-                <ProfilePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/projects/:project_id"
-            element={
-              <PrivateRoute>
-                <Project/>
-              </PrivateRoute>
-            }
-          />
+            <Route path="/" element={<Layout><HomePage /></Layout>} />
+            <Route path="/raw_datasets" element={<Layout><RawDatasetsPage /></Layout>} />
+            <Route path="/data_pipelines" element={<Layout><DataPipelinesPage /></Layout>} />
+            <Route path="/models" element={<Layout><ModelsPage /></Layout>} />
+            <Route path="/settings" element={<Layout><SettingsPage /></Layout>} />
+            <Route path="/account" element={<Layout><AccountPage /></Layout>} />
+            
+            <Route path="/data_pipeline_workspace/:id" element={<DataPipelineWorkspace/>} />
+            <Route path="/raw_dataset_workspace/:dataset" element={<RawDatasetWorkspace/>} />
+    
+            <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </Layout>
+      ) : (
+        <Routes>
+          <Route path="*" element={<AuthenticationPage />} /> {/* Redirect all to Authentication */}
+        </Routes>
+      )}
     </Router>
   );
 }
-
-export default App;

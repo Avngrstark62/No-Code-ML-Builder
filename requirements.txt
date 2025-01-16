@@ -3,3 +3,4 @@ psycopg2
 numpy
 pandas
 sqlalchemy
+scikit-learn

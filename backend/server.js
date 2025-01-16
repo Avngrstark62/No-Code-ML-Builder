@@ -5,7 +5,8 @@ import cors from 'cors';
 import { connectDB } from './config/db.js';
 import csvRoutes from './routes/csv.route.js';
 import authRoutes from "./routes/auth.routes.js";
-import projectRoutes from "./routes/project.route.js";
+import dataPipelineRoutes from "./routes/data,pipeline.routes.js"
+import dataFlowRoutes from "./routes/data.flow.route.js";
 
 dotenv.config();
 
@@ -25,7 +26,8 @@ connectDB();
 // Routes
 app.use('/api/csv', csvRoutes);
 app.use("/api", authRoutes);
-app.use("/api/project", projectRoutes);
+app.use("/api/data_pipelines", dataPipelineRoutes)
+app.use("/api/data_flow", dataFlowRoutes)
 
 
 

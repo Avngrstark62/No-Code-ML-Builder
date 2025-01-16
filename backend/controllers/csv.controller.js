@@ -1,8 +1,6 @@
 import fs from 'fs';
 import csv from 'csv-parser';
 import { saveCsvDataToTable, createTableForFile, getCsvData, getTableNames,deleteTableFromDatabase,assignFileToUser,getUserFiles} from '../models/csv.model.js';  // Updated imports
-import jwt from 'jsonwebtoken';
-import { addUser,authenticateUser } from '../models/authentication.model.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -84,16 +82,6 @@ export const fetchTableNames = async (req, res) => {
   }
 };
 
-// Fetch All Table Names from Database
-// export const fetchTableNames = async (req, res) => {
-//   try {
-//     const tableNames = await getTableNames();
-//     res.status(200).json(tableNames);
-//   } catch (error) {
-//     res.status(500).json({ message: 'Error fetching table names', error: error.message });
-//   }
-// };
-
 // Delete Table
 export const deleteTable = async (req, res) => {
   const { tableName } = req.params;
@@ -107,33 +95,5 @@ export const deleteTable = async (req, res) => {
   } catch (error) {
     // If an error occurs, return an error message
     res.status(500).json({ message: `Error deleting table "${tableName}"`, error: error.message });
-  }
-};
-
-
-
-export const signup = async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    const userId = await addUser(username, password);
-    const token = jwt.sign({ id: userId, username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-    res.status(201).json({ message: 'User created successfully', token });
-  } catch (err) {
-    res.status(500).json({ message: `Error signing up: ${err.message}` });
-  }
-};
-
-export const login = async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    const user = await authenticateUser(username, password);
-    const token = jwt.sign({ id: user.id, username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-    res.status(200).json({ message: 'Login successful', token });
-  } catch (err) {
-    res.status(401).json({ message: `Authentication failed: ${err.message}` });
   }
 };
