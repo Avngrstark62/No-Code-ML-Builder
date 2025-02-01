@@ -633,3 +633,31 @@ body, html {
   background-color: #f9f9f9;
   min-height: 200px;
 }
+
+/* show output data */
+
+.csv-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.csv-table th, .csv-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.csv-table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.csv-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.csv-table tr:hover {
+  background-color: #ddd;
+}
